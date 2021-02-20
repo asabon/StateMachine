@@ -14,7 +14,7 @@ $(TARGET): $(TEST_OBJS) $(LIBS)
 	./test
 
 $(LIBS):
-	make -c ../src
+	make -C ../src
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCDIR) -c $<
