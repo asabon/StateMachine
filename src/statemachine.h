@@ -4,13 +4,11 @@
 #include <stdio.h>
 
 typedef struct {
-    (void *)pf_Entry(void *);
-    (void *)pf_Do(void *);
-    (void *)pf_Exit(void *);
+    int id;
 } STATE_T;
 
 typedef struct {
-    int i;
+    int id;
 } STATEMACHINE_T;
 
 extern int statemachine_init(STATEMACHINE_T * pStatemachine);

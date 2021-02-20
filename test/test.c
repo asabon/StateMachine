@@ -3,5 +3,5 @@
 
 int main(void)
 {
-    reutrn 0;
+    return 0;
 }
