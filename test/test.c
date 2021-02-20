@@ -24,7 +24,7 @@ int main(void)
         {0, init_entry, init_do, init_exit},
         {1, init_entry, init_do, init_exit}
     };
-    result = statemachine_init(&statemachine, &statelist);
+    result = statemachine_init(&statemachine, statelist);
     if (result != 0) {
         return -1;
     }
