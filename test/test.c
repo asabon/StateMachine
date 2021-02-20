@@ -11,8 +11,10 @@ enum {
     ACTIVE_ENTRY,
     ACTIVE_DO,
     ACTIVE_EXIT
-}
+};
+
 int callcnt[9];
+
 void callcnt_init(void)
 {
     int i;
