@@ -15,4 +15,4 @@ $(TARGET): $(TEST_OBJS) $(LIBS)
 	./test
 
 .c.o:
-	$(CC) $(CFLAGS) $(INC) -c $<
+	$(CC) $(CFLAGS) $(INCDIR) -c $<
