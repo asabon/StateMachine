@@ -10,9 +10,11 @@ CFLAGS = -Wall
 TARGET = test
 
 $(TARGET): $(TEST_OBJS) $(LIBS)
-	make -c ../src
 	$(CC) $(CFLAGS) $(INCDIR) -o $(TARGET) $(TEST_OBJS) $(LIBS)
 	./test
+
+$(LIBS):
+	make -c ../src
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCDIR) -c $<
