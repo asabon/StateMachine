@@ -132,37 +132,41 @@ int main(void)
 
     result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
     if (result != 0) {
+        printf ("%d\n", __LINE__);
         errorcnt++;
     }
     if (callcnt_check(1, 0, 0, 0, 0, 0, 0, 0, 0) != 0) {
-        printf ("%d", __LINE__);
+        printf ("%d\n", __LINE__);
         errorcnt++;
     }
 
     result = statemachine_do(&statemachine);
     if (result != 0) {
+        printf ("%d\n", __LINE__);
         errorcnt++;
     }
     if (callcnt_check(1, 1, 1, 1, 0, 0, 0, 0, 0) != 0) {
-        printf ("%d", __LINE__);
+        printf ("%d\n", __LINE__);
         errorcnt++;
     }
 
     result = statemachine_do(&statemachine);
     if (result != 0) {
+        printf ("%d\n", __LINE__);
         errorcnt++;
     }
     if (callcnt_check(1, 1, 1, 1, 1, 1, 1, 0, 0) != 0) {
-        printf ("%d", __LINE__);
+        printf ("%d\n", __LINE__);
         errorcnt++;
     }
 
     result = statemachine_do(&statemachine);
     if (result != 0) {
+        printf ("%d\n", __LINE__);
         errorcnt++;
     }
     if (callcnt_check(1, 1, 1, 2, 1, 1, 1, 1, 1) != 0) {
-        printf ("%d", __LINE__);
+        printf ("%d\n", __LINE__);
         errorcnt++;
     }
     return errorcnt;
