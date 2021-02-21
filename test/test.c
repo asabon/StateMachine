@@ -86,7 +86,7 @@ int main(void)
         {1, sleep_entry,  sleep_do,  sleep_exit},
         {2, active_entry, active_do, active_exit}
     };
-    result = statemachine_init(&statemachine, &&statelist[0]);
+    result = statemachine_init(&statemachine, statelist);
     if (result != 0) {
         return -1;
     }
