@@ -129,9 +129,9 @@ int main(void)
     int errorcnt = 0;
     STATEMACHINE_T statemachine;
     STATE_T statelist[] = {
-        {0, init_entry,   init_do,   init_exit},
-        {1, sleep_entry,  sleep_do,  sleep_exit},
-        {2, active_entry, active_do, active_exit}
+        {init_entry,   init_do,   init_exit},
+        {sleep_entry,  sleep_do,  sleep_exit},
+        {active_entry, active_do, active_exit}
     };
 
     result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);

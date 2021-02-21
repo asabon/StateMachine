@@ -7,7 +7,6 @@
 #include <stdio.h>
 
 typedef struct {
-    int stateId;
     int (*pf_Entry)(void);
     int (*pf_Do)(int * pNextState);
     int (*pf_Exit)(void);
