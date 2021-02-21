@@ -2,6 +2,12 @@
 #include "statemachine.h"
 
 enum {
+    INIT = 0,
+    SLEEP,
+    ACTIVE
+};
+
+enum {
     INIT_ENTRY = 0,
     INIT_DO,
     INIT_EXIT,
@@ -32,6 +38,7 @@ int init_entry(void)
 int init_do(int * pNextState)
 {
     callcnt[INIT_DO]++;
+    *pNextState = SLEEP;
     return 0;
 }
 
@@ -50,6 +57,7 @@ int sleep_entry(void)
 int sleep_do(int * pNextState)
 {
     callcnt[SLEEP_DO]++;
+    *pNextState = ACTIVE;
     return 0;
 }
 
@@ -68,6 +76,7 @@ int active_entry(void)
 int active_do(int * pNextState)
 {
     callcnt[ACTIVE_DO]++;
+    *pNextState = SLEEP;
     return 0;
 }
 
@@ -87,6 +96,18 @@ int main(void)
         {2, active_entry, active_do, active_exit}
     };
     result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
+    if (result != 0) {
+        return -1;
+    }
+    result = statemachine_do(&statemachine);
+    if (result != 0) {
+        return -1;
+    }
+    result = statemachine_do(&statemachine);
+    if (result != 0) {
+        return -1;
+    }
+    result = statemachine_do(&statemachine);
     if (result != 0) {
         return -1;
     }
