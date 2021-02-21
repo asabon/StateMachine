@@ -15,8 +15,6 @@ int statemachine_init(STATEMACHINE_T * pStatemachine, STATE_T * pState, int stat
 
 int statemachine_do(STATEMACHINE_T * pStatemachine)
 {
-    int i;
-    int j;
     int result;
     result = pStatemachine->pState[pStatemachine->currentState].pf_Do(&(pStatemachine->nextState));
     if (result != 0) {
