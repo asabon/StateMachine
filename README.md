@@ -35,6 +35,14 @@ int main(void)
     - State list
     - This list have function pointers for each state.
     - Each state has 3 functions.
-        - Entry() : This function is called at entry this state.
-        - Do()    : This function is called one time.
-        - Exit()  : This function is called at exit this state.
+        - Entry()
+            - This function is called at entry this state.
+            - int entry (void);
+                - return value is error code (0 is successful)
+        - Do()
+            - int do (int * pNextstate);
+                - return value is error code (0 is successful)
+                - This function set next state id to pNextstate.
+        - Exit()
+            - int exit (void);
+                - return value is error code (0 is successful)
