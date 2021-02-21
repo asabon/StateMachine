@@ -60,6 +60,7 @@ int callcnt_check(int ientry, int ido, int iexit, int sentry, int sdo, int sexit
         error_cnt++;
     }
     if (error_cnt != 0) {
+        printf ("%d %d %d %d %d %d %d %d %d\n", ientry, ido, iexit, sentry, sdo, sexit, aentry, ado, aexit);
         printf ("%d %d %d %d %d %d %d %d %d\n", callcnt[INIT_ENTRY], callcnt[INIT_DO], callcnt[INIT_EXIT], callcnt[SLEEP_ENTRY], callcnt[SLEEP_DO], callcnt[SLEEP_EXIT], callcnt[ACTIVE_ENTRY], callcnt[ACTIVE_DO], callcnt[ACTIVE_EXIT]);
     }
     return error_cnt;
