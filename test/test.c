@@ -88,8 +88,8 @@ int active_exit(void)
 
 int main(void)
 {
-    int errorcnt = 0;
     int result;
+    int errorcnt = 0;
     STATEMACHINE_T statemachine;
     STATE_T statelist[] = {
         {0, init_entry,   init_do,   init_exit},
@@ -100,7 +100,7 @@ int main(void)
     if (result != 0) {
         errorcnt++;
     }
-    if (callcnt[INIT_ENTRY] == 1) {
+    if (callcnt[INIT_ENTRY] != 1) {
         errorcnt++;
     }
     result = statemachine_do(&statemachine);
