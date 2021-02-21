@@ -1,8 +1,10 @@
 #include "statemachine.h"
 
-int statemachine_init(STATEMACHINE_T * pStatemachine, STATE_T * pState)
+int statemachine_init(STATEMACHINE_T * pStatemachine, STATE_T * pState, int initialState)
 {
     pStatemachine->pState = pState;
+    pStatemachine->currentState = initialState;
+    printf ("len = %d\n", sizeof(pState)/sizeof(STATE_T));
     return 0;
 }
 
