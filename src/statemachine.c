@@ -29,6 +29,7 @@ int statemachine_do(STATEMACHINE_T * pStatemachine)
         if (result != 0) {
             return result;
         }
+        pStatemachine->currentState = pStatemachine->nextState;
     }
     return 0;
 }
