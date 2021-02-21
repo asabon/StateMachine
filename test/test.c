@@ -135,6 +135,7 @@ int main(void)
         errorcnt++;
     }
     if (callcnt_check(1, 0, 0, 0, 0, 0, 0, 0, 0) != 0) {
+        printf ("%d", __LINE__);
         errorcnt++;
     }
 
@@ -143,6 +144,7 @@ int main(void)
         errorcnt++;
     }
     if (callcnt_check(1, 1, 1, 1, 0, 0, 0, 0, 0) != 0) {
+        printf ("%d", __LINE__);
         errorcnt++;
     }
 
@@ -151,6 +153,7 @@ int main(void)
         errorcnt++;
     }
     if (callcnt_check(1, 1, 1, 1, 1, 1, 1, 0, 0) != 0) {
+        printf ("%d", __LINE__);
         errorcnt++;
     }
 
@@ -159,6 +162,7 @@ int main(void)
         errorcnt++;
     }
     if (callcnt_check(1, 1, 1, 2, 1, 1, 1, 1, 1) != 0) {
+        printf ("%d", __LINE__);
         errorcnt++;
     }
     return errorcnt;
