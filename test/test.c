@@ -88,6 +88,7 @@ int active_exit(void)
 
 int main(void)
 {
+    int errorcnt = 0;
     int result;
     STATEMACHINE_T statemachine;
     STATE_T statelist[] = {
@@ -97,23 +98,26 @@ int main(void)
     };
     result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
     if (result != 0) {
-        return -1;
+        errorcnt++;
+    }
+    if (callcnt[INIT_ENTRY] == 1) {
+        errorcnt++;
     }
     result = statemachine_do(&statemachine);
     if (result != 0) {
-        return -1;
+        errorcnt++;
     }
     result = statemachine_do(&statemachine);
     if (result != 0) {
-        return -1;
+        errorcnt++;
     }
     result = statemachine_do(&statemachine);
     if (result != 0) {
-        return -1;
+        errorcnt++;
     }
     result = statemachine_do(&statemachine);
     if (result != 0) {
-        return -1;
+        errorcnt++;
     }
-    return 0;
+    return errorcnt;
 }
