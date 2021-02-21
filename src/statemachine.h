@@ -12,9 +12,12 @@ typedef struct {
     int (*pf_Exit)(void);
 } STATE_T;
 
+/**
+ * @brief statemachine structure
+ */
 typedef struct {
-    int currentState;
-    int nextState;
+    int currentState; /**< current state */
+    int nextState;    /**< next state */
     int statelen;
     STATE_T * pState;
 } STATEMACHINE_T;
