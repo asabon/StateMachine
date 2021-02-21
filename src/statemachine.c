@@ -23,11 +23,11 @@ int statemachine_do(STATEMACHINE_T * pStatemachine)
         return result;
     }
     if (pStatemachine->currentState != pStatemachine->nextState) {
-        result = pStatemachine->pState[currentState].pf_Exit();
+        result = pStatemachine->pState[pStatemachine->currentState].pf_Exit();
         if (result != 0) {
             return result;
         }
-        result = pStatemachine->pState[nextState].pf_Entry();
+        result = pStatemachine->pState[pStatemachine->nextState].pf_Entry();
         if (result != 0) {
             return result;
         }
