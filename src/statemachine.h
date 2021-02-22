@@ -19,6 +19,7 @@ typedef struct {
     int currentState; /**< current state */
     int nextState;    /**< next state */
     int statelen;
+    int changed;
     STATE_T * pState;
 } STATEMACHINE_T;
 
