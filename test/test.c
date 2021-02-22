@@ -139,7 +139,7 @@ int main(void)
         printf ("%d\n", __LINE__);
         errorcnt++;
     }
-    if (callcnt_check(1, 0, 0, 0, 0, 0, 0, 0, 0) != 0) {
+    if (callcnt_check(0, 0, 0, 0, 0, 0, 0, 0, 0) != 0) {
         printf ("%d\n", __LINE__);
         errorcnt++;
     }
@@ -149,7 +149,7 @@ int main(void)
         printf ("%d\n", __LINE__);
         errorcnt++;
     }
-    if (callcnt_check(1, 1, 1, 1, 0, 0, 0, 0, 0) != 0) {
+    if (callcnt_check(1, 1, 1, 0, 0, 0, 0, 0, 0) != 0) {
         printf ("%d\n", __LINE__);
         errorcnt++;
     }
@@ -159,7 +159,7 @@ int main(void)
         printf ("%d\n", __LINE__);
         errorcnt++;
     }
-    if (callcnt_check(1, 1, 1, 1, 1, 1, 1, 0, 0) != 0) {
+    if (callcnt_check(1, 1, 1, 1, 1, 1, 0, 0, 0) != 0) {
         printf ("%d\n", __LINE__);
         errorcnt++;
     }
@@ -169,7 +169,7 @@ int main(void)
         printf ("%d\n", __LINE__);
         errorcnt++;
     }
-    if (callcnt_check(1, 1, 1, 2, 1, 1, 1, 1, 1) != 0) {
+    if (callcnt_check(1, 1, 1, 1, 1, 1, 1, 1, 1) != 0) {
         printf ("%d\n", __LINE__);
         errorcnt++;
     }

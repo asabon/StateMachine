@@ -6,31 +6,30 @@ int statemachine_init(STATEMACHINE_T * pStatemachine, STATE_T * pState, int stat
     pStatemachine->pState = pState;
     pStatemachine->currentState = initialState;
     pStatemachine->statelen = statelen;
-    if (pStatemachine->pState[pStatemachine->nextState].pf_Entry != NULL) {
-        result = pStatemachine->pState[initialState].pf_Entry();
-        if (result != 0) {
-            return result;
-        }
-    }
+    pStatemachine->changed = 1;
     return 0;
 }
 
 int statemachine_do(STATEMACHINE_T * pStatemachine)
 {
     int result;
+    if (pStatemachine->changed != 0) {
+        if (pStatemachine->pState[pStatemachine->currentState].pf_Entry != NULL) {
+            result = pStatemachine->pState[pStatemachine->currentState].pf_Entry();
+            if (result != 0) {
+                return result;
+            }
+        }
+        pStatemachine->changed = 0;
+    }
     result = pStatemachine->pState[pStatemachine->currentState].pf_Do(&(pStatemachine->nextState));
     if (result != 0) {
         return result;
     }
     if (pStatemachine->currentState != pStatemachine->nextState) {
+        pStatemachine->changed = 1;
         if (pStatemachine->pState[pStatemachine->currentState].pf_Exit != NULL) {
             result = pStatemachine->pState[pStatemachine->currentState].pf_Exit();
-            if (result != 0) {
-                return result;
-            }
-        }
-        if (pStatemachine->pState[pStatemachine->nextState].pf_Entry != NULL) {
-            result = pStatemachine->pState[pStatemachine->nextState].pf_Entry();
             if (result != 0) {
                 return result;
             }
