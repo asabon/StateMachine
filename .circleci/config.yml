@@ -5,5 +5,6 @@ jobs:
       - image: circleci/golang:latest
     steps:
       - checkout
+      - run: apt-get install -y cmake make gcc
       - run: cd test/googletest-release-1.10.0/; mkdir build; cd build; cmake ..; make
       - run: cd test; make
