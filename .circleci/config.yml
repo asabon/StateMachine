@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:4.8.2
+      - image: circleci/golang:latest
     steps:
       - checkout
       - run: cd test/googletest-release-1.10.0/; mkdir build; cd build; cmake ..; make
