@@ -128,11 +128,18 @@ int active_exit(void)
 TEST(statemachine_init, test_00)
 {
     int result;
-    STATEMACHINE_T statemachine;
     STATE_T statelist[] = {
         {NULL, NULL, NULL}
     };
     result = statemachine_init(NULL, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
+    EXPECT_EQ(ERROR_INIT_NULL, result);
+}
+
+TEST(statemachine_init, test_01)
+{
+    int result;
+    STATEMACHINE_T statemachine;
+    result = statemachine_init(&statemachine, NULL, 0, 0);
     EXPECT_EQ(ERROR_INIT_NULL, result);
 }
 
