@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
-extern "C" {
 #include "statemachine.h"
-}
 
 #if 0
 enum {

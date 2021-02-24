@@ -25,7 +25,13 @@ typedef struct {
     STATE_T * pState;
 } STATEMACHINE_T;
 
+#ifdef __cplusplus
+#extern "C" {
+#endif
 extern int statemachine_init(STATEMACHINE_T * pStatemachine, STATE_T * pState, int statelen, int initialState);
 extern int statemachine_do(STATEMACHINE_T * pStatemachine);
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* STATEMACHINE_H */
