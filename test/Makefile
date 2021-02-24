@@ -3,8 +3,8 @@ CXX = g++
 
 LIBS = ../src/statemachine.a
 
-TEST_SRCS = test.c
-TEST_OBJS = $(TEST_SRCS:.c=.o)
+TEST_SRCS = test.cpp
+TEST_OBJS = $(TEST_SRCS:.cpp=.o)
 
 GTEST_OBJS = -lgtest -lgmock -lgmock_main -lgtest_main
 
@@ -19,9 +19,11 @@ $(TARGET): $(TEST_OBJS) $(LIBS)
 $(LIBS):
 	make -C ../src
 
-.cc.o:
-	$(CXX) -c $<
+.cpp.o:
+	$(CXX) $(CFLAGS) $(INCDIR) -c $<
 
+.cc.o:
+	$(CXX) $(CFLAGS) $(INCDIR) -c $<
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCDIR) -c $<

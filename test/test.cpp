@@ -1,5 +1,7 @@
-#include <stdio.h>
+#include <gtest/gtest.h>
+extern "C" {
 #include "statemachine.h"
+}
 
 enum {
     INIT = 0,
