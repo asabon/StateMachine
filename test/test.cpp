@@ -143,6 +143,28 @@ TEST(statemachine_init, test_01)
     EXPECT_EQ(ERROR_INIT_NULL, result);
 }
 
+TEST(statemachine_init, test_02)
+{
+    int result;
+    STATEMACHINE_T statemachine;
+    STATE_T statelist[] = {
+        {NULL, NULL, NULL}
+    };
+    result = statemachine_init(&statemachine, statelist, 0, 0);
+    EXPECT_EQ(ERROR_INIT_NULL, result);
+}
+
+TEST(statemachine_init, test_03)
+{
+    int result;
+    STATEMACHINE_T statemachine;
+    STATE_T statelist[] = {
+        {NULL, NULL, NULL}
+    };
+    result = statemachine_init(&statemachine, statelist, 1, 0);
+    EXPECT_EQ(0, result);
+}
+
 #if 0
 int main(void)
 {
