@@ -10,7 +10,7 @@ INCDIR = -I../src -Igoogletest-release-1.10.0/googletest/include
 CFLAGS = -Wall -Lgoogletest-release-1.10.0/build/lib -L../src
 TARGET = test
 
-$(TARGET):
+$(TARGET): $(TEST_OBJS)
 	make -C ../src
 	$(CC) $(CFLAGS) $(INCDIR) -o $(TARGET) $(TEST_OBJS) $(LIBS)
 	./test
