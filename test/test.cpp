@@ -127,10 +127,12 @@ int active_exit(void)
 }
 #endif
 
-TEST(a, b)
+TEST(statemachine_init, test_00)
 {
-    EXPECT_EQ(1, 0);
-    EXPECT_EQ(1, 1);
+    int result;
+    STATEMACHINE_T statemachine;
+    result = statemachine_init(NULL, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
+    EXPECT_NE(-1, result);
 }
 
 #if 0
