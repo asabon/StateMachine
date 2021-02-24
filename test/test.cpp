@@ -3,6 +3,7 @@ extern "C" {
 #include "statemachine.h"
 }
 
+#if 0
 enum {
     INIT = 0,
     SLEEP,
@@ -124,6 +125,7 @@ int active_exit(void)
     callcnt[ACTIVE_EXIT]++;
     return 0;
 }
+#endif
 
 TEST(a, b)
 {
