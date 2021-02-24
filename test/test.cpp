@@ -169,6 +169,52 @@ TEST(statemachine_init, test_03)
     EXPECT_EQ(1, statemachine.changed);
 }
 
+int state00_entry(void)
+{
+    return 0;
+}
+
+int state00_do(int * pNextState)
+{
+    *pNextState = 1;
+    return 0;
+}
+
+int state00_exit(void)
+{
+    return 0;
+}
+
+int state01_entry(void)
+{
+    return 0;
+}
+
+int state01_do(int * pNextState)
+{
+    *pNextState = 0;
+    return 0;
+}
+
+int state01_exit(void)
+{
+    return 0;
+}
+
+TEST(statemachine_do, test_01)
+{
+    int result;
+    STATEMACHINE_T statemachine;
+    STATE_T statelist[] = {
+        {state00_entry, state00_do, state00_exit},
+        {state01_entry, state01_do, state01_exit}
+    };
+    result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
+    EXPECT_EQ(0, result);
+    result = statemachine_do(&statemachine);
+    EXPECT_EQ(0, result);
+}
+
 #if 0
 int main(void)
 {
