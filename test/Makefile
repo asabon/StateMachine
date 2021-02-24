@@ -14,6 +14,7 @@ $(TARGET): $(TEST_OBJS)
 	make -C ../src
 	$(CC) $(CFLAGS) $(INCDIR) -o $(TARGET) $(TEST_OBJS) $(LIBS)
 	./test
+	gcov -bf ../src/statemachine.c
 
 .cpp.o:
 	$(CXX) $(CFLAGS) $(INCDIR) -c $<
