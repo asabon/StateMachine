@@ -163,6 +163,10 @@ TEST(statemachine_init, test_03)
     };
     result = statemachine_init(&statemachine, statelist, 1, 0);
     EXPECT_EQ(0, result);
+    EXPECT_EQ(statelist, statemachine.pState);
+    EXPECT_EQ(1, statemachine.statelen);
+    EXPECT_EQ(0, statemachine.currentState);
+    EXPECT_EQ(1, statemachine.changed);
 }
 
 #if 0
