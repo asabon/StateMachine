@@ -4,6 +4,11 @@ jobs:
     docker:
       - image: gcc
     steps:
+      - run:
+            name: Install CMake
+            command: |
+              sudo apt -y -q update
+              sudo apt -y -q install cmake
       - checkout
       - run: cd test/googletest-release-1.10.0/; mkdir build; cd build; cmake ..; make
       - run: cd test; make
