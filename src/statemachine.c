@@ -2,6 +2,9 @@
 
 int statemachine_init(STATEMACHINE_T * pStatemachine, STATE_T * pState, int statelen, int initialState)
 {
+    if (pStatemachine == NULL) {
+        return ERROR_INIT_NULL;
+    }
     pStatemachine->pState = pState;
     pStatemachine->currentState = initialState;
     pStatemachine->statelen = statelen;

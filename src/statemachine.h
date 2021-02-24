@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 
+#define ERROR_INIT_NULL (-1)
+
 typedef struct {
     int (*pf_Entry)(void);
     int (*pf_Do)(int * pNextState);
