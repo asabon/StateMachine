@@ -3,7 +3,7 @@ AR = ar
 RANLIB = ranlib
 SRCS = statemachine.c
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall
+CFLAGS = -Wall -coverage
 LIB = libstatemachine.a
 
 $(LIB): $(OBJS)
