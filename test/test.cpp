@@ -125,6 +125,13 @@ int active_exit(void)
     return 0;
 }
 
+TEST(a, b)
+{
+    EXPECT_EQ(1, 0);
+    EXPECT_EQ(1, 1);
+}
+
+#if 0
 int main(void)
 {
     int result;
@@ -177,3 +184,4 @@ int main(void)
     }
     return errorcnt;
 }
+#endif
