@@ -13,5 +13,6 @@ jobs:
       - run: cd test/googletest-release-1.10.0/; mkdir build; cd build; cmake ..; make
       - run: ls test/googletest-release-1.10.0
       - run: ls test/googletest-release-1.10.0/build
+      - run: ls test/googletest-release-1.10.0/build/lib
       - run: ls test/googletest-release-1.10.0/googletest
       - run: cd test; make

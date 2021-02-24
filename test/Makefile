@@ -9,7 +9,7 @@ TEST_OBJS = $(TEST_SRCS:.c=.o)
 GTEST_OBJS = -ltest -lgmock -lgmock_main -lgtest_main
 
 INCDIR = -I../src -Igoogletest-release-1.10.0/googletest/include
-CFLAGS = -Wall -Lgoogletest-release-1.10.0/googletest
+CFLAGS = -Wall -Lgoogletest-release-1.10.0/googletest/build/lib
 TARGET = test
 
 $(TARGET): $(TEST_OBJS) $(LIBS)
