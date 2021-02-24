@@ -11,4 +11,5 @@ jobs:
               sudo apt -y -q install cmake
       - checkout
       - run: cd test/googletest-release-1.10.0/; mkdir build; cd build; cmake ..; make
+      - run: ls test/googletest-release-1.10.0
       - run: cd test; make
