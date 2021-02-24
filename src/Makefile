@@ -1,4 +1,4 @@
-CC = gcc
+CC = g++
 AR = ar
 RANLIB = ranlib
 SRCS = statemachine.c
