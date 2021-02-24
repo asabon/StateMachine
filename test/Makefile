@@ -7,7 +7,7 @@ TEST_OBJS = $(TEST_SRCS:.cpp=.o)
 LIBS = -lgtest -lgtest_main -lpthread -lstatemachine
 
 INCDIR = -I../src -Igoogletest-release-1.10.0/googletest/include
-CFLAGS = -Wall -Lgoogletest-release-1.10.0/build/lib -L../src
+CFLAGS = -Wall -Lgoogletest-release-1.10.0/build/lib -L../src -coverage
 TARGET = test
 
 $(TARGET): $(TEST_OBJS)
