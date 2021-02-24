@@ -131,6 +131,9 @@ TEST(statemachine_init, test_00)
 {
     int result;
     STATEMACHINE_T statemachine;
+    STATE_T statelist[] = {
+        {NULL, NULL, NULL}
+    }
     result = statemachine_init(NULL, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
     EXPECT_NE(-1, result);
 }
