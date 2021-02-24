@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: gcc
+      - image: cimg/base:stable
     steps:
       - run:
             name: Install CMake
