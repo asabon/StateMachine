@@ -202,6 +202,10 @@ int state01_exit(void)
     return 0;
 }
 
+MOCK_METHOD0(state10_entry, int());
+MOCK_METHOD1(state10_do,    int(int * pNext));
+MOCK_METHOD0(state10_exit,  int());
+
 TEST(statemachine_do, test_01)
 {
     int result;
