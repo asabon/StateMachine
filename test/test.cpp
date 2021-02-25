@@ -213,10 +213,20 @@ Mocks * mocks;
 
 extern "C" {
 int state10_entry(void);
+int state10_do(int * pNext);
+int state10_exit(void);
 }
 
 int state10_entry(void) {
     return mocks->state10_entry();
+}
+
+int state10_do(int * pNext) {
+    return mocks->state10_do(pNext);
+}
+
+int state10_exit(void) {
+    return mocks->state10_exit();
 }
 
 TEST(statemachine_do, test_01)
