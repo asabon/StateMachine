@@ -144,6 +144,12 @@ TEST_F(Test_statemachine_do, test_01)
 
     result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
     EXPECT_EQ(0, result);
+    EXPECT_CALL(*mocks, state10_entry(_)).WillRepeatedly(Return(0));
+    EXPECT_CALL(*mocks, state10_do(_)).WillRepeatedly(Return(0));
+    EXPECT_CALL(*mocks, state10_exit(_)).WillRepeatedly(Return(0));
+    EXPECT_CALL(*mocks, state11_entry(_)).WillRepeatedly(Return(0));
+    EXPECT_CALL(*mocks, state11_do(_)).WillRepeatedly(Return(0));
+    EXPECT_CALL(*mocks, state11_exit(_)).WillRepeatedly(Return(0));
     result = statemachine_do(&statemachine);
     EXPECT_EQ(0, result);
 }
