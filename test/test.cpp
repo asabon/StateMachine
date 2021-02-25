@@ -202,6 +202,23 @@ int state01_exit(void)
     return 0;
 }
 
+class Mocks {
+    public:
+        MOCK_METHOD0(state10_entry, int());
+        MOCK_METHOD1(state10_do,    int(int * pNext));
+        MOCK_METHOD0(state10_exit,  int());
+};
+
+Mocks * mocks;
+
+extern "C" {
+int state10_entry(void);
+}
+
+int state10_entry(void) {
+    return mocks->state10_entry();
+}
+
 TEST(statemachine_do, test_01)
 {
     int result;
@@ -210,10 +227,6 @@ TEST(statemachine_do, test_01)
         {state00_entry, state00_do, state00_exit},
         {state01_entry, state01_do, state01_exit}
     };
-
-    MOCK_METHOD0(state10_entry, int());
-    MOCK_METHOD1(state10_do,    int(int * pNext));
-    MOCK_METHOD0(state10_exit,  int());
 
     result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
     EXPECT_EQ(0, result);
