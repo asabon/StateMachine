@@ -229,7 +229,17 @@ int state10_exit(void) {
     return mocks->state10_exit();
 }
 
-TEST(statemachine_do, test_01)
+class statemachine_do : public ::testing::Test {
+protected:
+    virtual void SetUp() {
+        mocks = new Mocks();
+    }
+    virtual void TearDown() {
+        delete mocks;
+    }
+};
+
+TEST_F(statemachine_do, test_01)
 {
     int result;
     STATEMACHINE_T statemachine;
