@@ -4,7 +4,7 @@ CXX = g++
 TEST_SRCS = test.cpp
 TEST_OBJS = $(TEST_SRCS:.cpp=.o)
 
-LIBS = -lgtest -lgtest_main -lpthread -lstatemachine
+LIBS = -lgtest -lgtest_main -lgmock -lpthread -lstatemachine
 
 INCDIR = -I../src -Igoogletest-release-1.10.0/googletest/include
 CFLAGS = -Wall -Lgoogletest-release-1.10.0/build/lib -L../src -coverage
