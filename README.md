@@ -1,6 +1,8 @@
 # statemachine
 
-This is a simple statemachine.
+## Outline
+
+This is a simple statemachine for C language.
 
 ## Example
 
@@ -28,13 +30,13 @@ int main(void)
 }
 ```
 
-- statemachine
-    - Statemachine object
-    - This object is initialized by statemachine_init() function.
-- statelist
-    - State list
-    - This list have function pointers for each state.
-    - Each state has 3 functions.
+- STATEMACHINE_T
+    - Statemachine data structure.
+    - statemachine_init() initialize this instance.
+
+- STATE_T
+    - State data structure.
+    - This structure has 3 function pointers.
         - Entry()
             - This function is called at entry this state.
             - int entry (void);
