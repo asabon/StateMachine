@@ -153,33 +153,48 @@ TEST_F(Test_statemachine_do, test_01)
     EXPECT_CALL(*mocks, state11_exit()).WillRepeatedly(testing::Return(0));
     result = statemachine_do(&statemachine);
     EXPECT_EQ(0, result);
+}
 
-/*
-    EXPECT_CALL(*mocks, state10_entry()).WillRepeatedly(testing::Return(-1));
-    EXPECT_CALL(*mocks, state10_do(testing::_)).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state10_exit()).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state11_entry()).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state11_do(testing::_)).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state11_exit()).WillRepeatedly(testing::Return(0));
-    result = statemachine_do(&statemachine);
-    EXPECT_EQ(-1, result);
+TEST_F(Test_statemachine_do, test_02)
+{
+    int result;
+    STATEMACHINE_T statemachine;
+    STATE_T statelist[] = {
+        {NULL, state10_do, state10_exit},
+        {NULL, state11_do, state11_exit}
+    };
 
-    EXPECT_CALL(*mocks, state10_entry()).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state10_do(testing::_)).WillRepeatedly(testing::Return(-1));
-    EXPECT_CALL(*mocks, state10_exit()).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state11_entry()).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state11_do(testing::_)).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state11_exit()).WillRepeatedly(testing::Return(0));
-    result = statemachine_do(&statemachine);
-    EXPECT_EQ(-1, result);
+    result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
+    EXPECT_EQ(0, result);
 
     EXPECT_CALL(*mocks, state10_entry()).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state10_do(testing::_)).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state10_exit()).WillRepeatedly(testing::Return(-1));
+    EXPECT_CALL(*mocks, state10_do(testing::_)).WillRepeatedly(testing::DoAll(testing::SetArgPointee<0>(1), testing::Return(0)));
+    EXPECT_CALL(*mocks, state10_exit()).WillRepeatedly(testing::Return(0));
     EXPECT_CALL(*mocks, state11_entry()).WillRepeatedly(testing::Return(0));
-    EXPECT_CALL(*mocks, state11_do(testing::_)).WillRepeatedly(testing::Return(0));
+    EXPECT_CALL(*mocks, state11_do(testing::_)).WillRepeatedly(testing::DoAll(testing::SetArgPointee<0>(0), testing::Return(0)));
     EXPECT_CALL(*mocks, state11_exit()).WillRepeatedly(testing::Return(0));
     result = statemachine_do(&statemachine);
-    EXPECT_EQ(-1, result);
-*/
+    EXPECT_EQ(0, result);
+}
+
+TEST_F(Test_statemachine_do, test_03)
+{
+    int result;
+    STATEMACHINE_T statemachine;
+    STATE_T statelist[] = {
+        {state10_entry, state10_do, NULL},
+        {state11_entry, state11_do, NULL}
+    };
+
+    result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
+    EXPECT_EQ(0, result);
+
+    EXPECT_CALL(*mocks, state10_entry()).WillRepeatedly(testing::Return(0));
+    EXPECT_CALL(*mocks, state10_do(testing::_)).WillRepeatedly(testing::DoAll(testing::SetArgPointee<0>(1), testing::Return(0)));
+    EXPECT_CALL(*mocks, state10_exit()).WillRepeatedly(testing::Return(0));
+    EXPECT_CALL(*mocks, state11_entry()).WillRepeatedly(testing::Return(0));
+    EXPECT_CALL(*mocks, state11_do(testing::_)).WillRepeatedly(testing::DoAll(testing::SetArgPointee<0>(0), testing::Return(0)));
+    EXPECT_CALL(*mocks, state11_exit()).WillRepeatedly(testing::Return(0));
+    result = statemachine_do(&statemachine);
+    EXPECT_EQ(0, result);
 }
