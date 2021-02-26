@@ -81,10 +81,10 @@ int state01_exit(void)
 class Mocks {
     public:
         MOCK_METHOD0(state10_entry, int());
-        MOCK_METHOD1(state10_do,    int(int * pNext));
+        MOCK_METHOD1(state10_do,    int(int *));
         MOCK_METHOD0(state10_exit,  int());
         MOCK_METHOD0(state11_entry, int());
-        MOCK_METHOD1(state11_do,    int(int * pNext));
+        MOCK_METHOD1(state11_do,    int(int *));
         MOCK_METHOD0(state11_exit,  int());
 };
 
