@@ -1,5 +1,7 @@
 # statemachine
 
+[![CircleCI](https://circleci.com/gh/asabon/statemachine.svg?style=svg)](https://circleci.com/gh/asabon/statemachine)
+
 ## Outline
 
 This is a simple statemachine for C language.
