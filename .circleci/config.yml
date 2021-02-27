@@ -12,3 +12,5 @@ jobs:
       - checkout
       - run: cd test/googletest-release-1.10.0/; mkdir build; cd build; cmake ..; make
       - run: cd test; make
+      - store_test_results:
+            path: test/
