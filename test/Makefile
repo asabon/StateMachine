@@ -13,7 +13,7 @@ TARGET = test
 $(TARGET): $(TEST_OBJS)
 	make -C ../src
 	$(CC) $(CFLAGS) $(INCDIR) -o $(TARGET) $(TEST_OBJS) $(LIBS)
-	./test -gtest_output "xml"
+	./test -gtest_output=xml
 	gcov -bf ../src/statemachine.c
 
 .cpp.o:
