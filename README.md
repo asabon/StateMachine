@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/asabon/statemachine.svg?style=svg)](https://circleci.com/gh/asabon/statemachine)
 
+[![CircleCI](https://circleci.com/gh/asabon/statemachine.svg?style=shield)](https://img.shields.io/appveyor/tests/asabon/statemachine)
+
 ## Outline
 
 This is a simple statemachine for C language.
