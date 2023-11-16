@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: mkdir -p test/googletest-release-1.10.0/build
-      - run: cd build; cmake ..; make
+      - run: cd test/googletest-release-1.10.0/build; cmake ..; make
       - run: ls
       - run: ls test
       - run: ls test/googletest-release-1.10.0
