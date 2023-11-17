@@ -14,3 +14,24 @@ execute_process(COMMAND ${CMAKE_COMMAND} --build .
 if(result)
   message(FATAL_ERROR "Build step for googletest failed: ${result}")
 endif()
+
+# Prevent overriding the parent project's compiler/linker
+# settings on Windows
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+# Add googletest directly to our build. This defines
+# the gtest and gtest_main targets.
+add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
+                 ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
+                 EXCLUDE_FROM_ALL)
+
+
+project(statemachine-test)
+
+add_executable(statemachine-test
+    ../src/statemachine.c
+    test.cpp)
+
+target_link_libraries(statemachine-test
+    PRIVATE
+    gtest_main)
