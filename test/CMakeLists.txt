@@ -21,5 +21,8 @@ add_executable(
   ../src/statemachine.c
   test.cpp)
 
-include(GoogleTest)
+include(
+  GoogleTest
+  GoogleMock)
+
 gtest_discover_tests(statemachine-test)
