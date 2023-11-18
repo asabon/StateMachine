@@ -29,8 +29,10 @@ jobs:
           name: build-package
           path: test/build/
 
-#          make
-#          cd ..
+      - name: Build next
+        run: |
+          cd test/build
+          make
 
       - run: ls
       - run: ls test
