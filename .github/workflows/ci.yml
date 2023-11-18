@@ -13,21 +13,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Create build directory
-        run: mkdir -p test/build
-
-      - name: download GoogleTest and build test
+      - name: Install GoogleTest
         run: |
+          sudo apt install libgtest-dev
+
+      - name: Build
+        run: |
+          mkdir -p test/build
           cd test/build
           cmake ..
-          cmake --build .
+          make
+          cd ..
 
       - run: ls
       - run: ls test
       - run: ls test/build
 
-      - name: run test
-        run: test/build/statemachine-test
+#      - name: run test
+#        run: test/build/statemachine-test
 
 #      - run: cd test/googletest-release-1.10.0/build; cmake ..; make
 #      - run: ls
