@@ -28,9 +28,15 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
 
 project(statemachine-test)
 
+
 add_executable(statemachine-test
     ../src/statemachine.c
     test.cpp)
+
+target_include_directories(statemachine-test
+    ${CMAKE_CURRENT_BINARY_DIR}/googletest-src/googletest/include
+    ${CMAKE_CURRENT_BINARY_DIR}/googletest-src/googlemock/include
+    )
 
 target_link_libraries(statemachine-test
     PRIVATE
