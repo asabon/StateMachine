@@ -14,21 +14,12 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Add googletest directly to our build. This defines
-# the gtest and gtest_main targets.
-#add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-                 ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-                 EXCLUDE_FROM_ALL)
+enable_testing()
 
-add_executable(statemachine-test
-    ../src/statemachine.c
-    test.cpp)
+add_executable(
+  statemachine-test
+  ../src/statemachine.c
+  test.cpp)
 
-target_include_directories(statemachine-test
-    ${CMAKE_CURRENT_BINARY_DIR}/googletest-src/googletest/include
-    ${CMAKE_CURRENT_BINARY_DIR}/googletest-src/googlemock/include
-    )
-
-target_link_libraries(statemachine-test
-    PRIVATE
-    gtest_main)
+include(GoogleTest)
+gtest_discover_tests(statemachine-test)
