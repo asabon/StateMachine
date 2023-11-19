@@ -1,6 +1,6 @@
-# statemachine
+[![CI](https://github.com/asabon/statemachine/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/asabon/statemachine/actions/workflows/ci.yml)
 
-[![CircleCI](https://circleci.com/gh/asabon/statemachine.svg?style=shield)](https://img.shields.io/appveyor/tests/asabon/statemachine/main)
+# statemachine
 
 ## Outline
 
