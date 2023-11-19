@@ -45,38 +45,6 @@ TEST(statemachine_init, test_03)
     EXPECT_EQ(1, statemachine.changed);
 }
 
-int state00_entry(void)
-{
-    return 0;
-}
-
-int state00_do(int * pNextState)
-{
-    *pNextState = 1;
-    return 0;
-}
-
-int state00_exit(void)
-{
-    return 0;
-}
-
-int state01_entry(void)
-{
-    return 0;
-}
-
-int state01_do(int * pNextState)
-{
-    *pNextState = 0;
-    return 0;
-}
-
-int state01_exit(void)
-{
-    return 0;
-}
-
 extern "C" {
 int state10_entry(void);
 int state10_do(int * pNext);

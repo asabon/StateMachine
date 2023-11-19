@@ -22,23 +22,19 @@ jobs:
           mkdir -p test/build
           cd test/build
           cmake ..
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-package
-          path: test/build/
-
-      - name: Build next
-        run: |
-          cd test/build
           make
 
       - run: ls
       - run: ls test
       - run: ls test/build
 
-#      - name: run test
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-package
+          path: test/build
+
+        #      - name: run test
 #        run: test/build/statemachine-test
 
 #      - run: cd test/googletest-release-1.10.0/build; cmake ..; make
