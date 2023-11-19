@@ -1,4 +1,4 @@
-#include "gmcok/gmock.h"
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "mocks.h"
 #include "../src/statemachine.h"
