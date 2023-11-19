@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <gmock/gmock.h>
+//#include <gmock/gmock.h>
 #include "statemachine.h"
 
 TEST(statemachine_init, test_00)
