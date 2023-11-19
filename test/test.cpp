@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-//#include <gmock/gmock.h>
 #include "../src/statemachine.h"
 
 TEST(statemachine_init, test_00)
@@ -78,6 +77,15 @@ int state01_exit(void)
     return 0;
 }
 
+extern "C" {
+int state10_entry(void);
+int state10_do(int * pNext);
+int state10_exit(void);
+int state11_entry(void);
+int state11_do(int * pNext);
+int state11_exit(void);
+}
+
 class Mocks {
     public:
         MOCK_METHOD0(state10_entry, int());
@@ -89,15 +97,6 @@ class Mocks {
 };
 
 Mocks * mocks;
-
-extern "C" {
-int state10_entry(void);
-int state10_do(int * pNext);
-int state10_exit(void);
-int state11_entry(void);
-int state11_do(int * pNext);
-int state11_exit(void);
-}
 
 int state10_entry(void) {
     return mocks->state10_entry();
