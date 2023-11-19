@@ -18,10 +18,14 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(
-  statemachine-test
+add_executable(statemachine-test
   ../src/statemachine.c
   test.cpp)
+
+target_link_libraries(statemachine-test
+  PRIVATE
+    gtest_main
+)
 
 include(GoogleTest)
 
