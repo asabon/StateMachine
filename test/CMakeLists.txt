@@ -23,8 +23,6 @@ add_executable(
   ../src/statemachine.c
   test.cpp)
 
-include(
-  GoogleTest
-  GoogleMock)
+include(GoogleTest)
 
 gtest_discover_tests(statemachine-test)
