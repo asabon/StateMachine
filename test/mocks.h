@@ -2,6 +2,7 @@
 #define MOCKS_H
 
 #include <gtest/gtest.h>
+#include <gmcok/gmock.h>
 
 extern "C" {
 int state10_entry(void);

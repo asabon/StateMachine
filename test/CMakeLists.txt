@@ -28,6 +28,6 @@ target_link_libraries(statemachine-test
     gtest_main
 )
 
-include(GoogleTest)
+include(GoogleTest GoogleMock)
 
 gtest_discover_tests(statemachine-test)

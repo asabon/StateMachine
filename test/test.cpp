@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <gmcok/gmock.h>
 #include "mocks.h"
 #include "../src/statemachine.h"
 
