@@ -32,6 +32,7 @@ target_include_directories(statemachine-test
 target_link_libraries(statemachine-test
   PRIVATE
     gtest_main
+    pthreads 
 )
 
 include(
