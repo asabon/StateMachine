@@ -24,8 +24,9 @@ add_executable(statemachine-test
   mocks.cpp)
 
 target_include_directories(statemachine-test
-  googletest/include
-  googlemock/include
+  PRIVATE
+    googletest/include
+    googlemock/include
 )
 
 target_link_libraries(statemachine-test
