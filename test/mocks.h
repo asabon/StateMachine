@@ -1,8 +1,10 @@
 #ifndef MOCKS_H
 #define MOCKS_H
 
+#include <gtest/gtest.h>
+
 extern "C" {
-extern int state10_entry(void);
+int state10_entry(void);
 int state10_do(int * pNext);
 int state10_exit(void);
 int state11_entry(void);
