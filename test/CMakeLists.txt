@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.14)
 
 project(statemachine-test)
 
@@ -23,15 +23,15 @@ add_executable(statemachine-test
   test.cpp
   mocks.cpp)
 
-target_include_directories(statemachine-test
-  PRIVATE
-    googletest/include
-    googlemock/include
-)
+#target_include_directories(statemachine-test
+#  PRIVATE
+#    googletest/include
+#    googlemock/include
+#)
 
 target_link_libraries(statemachine-test
   PRIVATE
-    gtest_main
+    GTest::gtest_main
     pthreads 
 )
 
