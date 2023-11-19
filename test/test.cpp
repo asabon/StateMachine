@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "mocks.h"
 #include "../src/statemachine.h"
 
 TEST(statemachine_init, test_00)
@@ -43,51 +44,6 @@ TEST(statemachine_init, test_03)
     EXPECT_EQ(1, statemachine.statelen);
     EXPECT_EQ(0, statemachine.currentState);
     EXPECT_EQ(1, statemachine.changed);
-}
-
-extern "C" {
-int state10_entry(void);
-int state10_do(int * pNext);
-int state10_exit(void);
-int state11_entry(void);
-int state11_do(int * pNext);
-int state11_exit(void);
-}
-
-class Mocks {
-    public:
-        MOCK_METHOD0(state10_entry, int());
-        MOCK_METHOD1(state10_do,    int(int *));
-        MOCK_METHOD0(state10_exit,  int());
-        MOCK_METHOD0(state11_entry, int());
-        MOCK_METHOD1(state11_do,    int(int *));
-        MOCK_METHOD0(state11_exit,  int());
-};
-
-Mocks * mocks;
-
-int state10_entry(void) {
-    return mocks->state10_entry();
-}
-
-int state10_do(int * pNext) {
-    return mocks->state10_do(pNext);
-}
-
-int state10_exit(void) {
-    return mocks->state10_exit();
-}
-
-int state11_entry(void) {
-    return mocks->state11_entry();
-}
-
-int state11_do(int * pNext) {
-    return mocks->state11_do(pNext);
-}
-
-int state11_exit(void) {
-    return mocks->state11_exit();
 }
 
 class Test_statemachine_do : public ::testing::Test {

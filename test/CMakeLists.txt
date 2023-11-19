@@ -20,7 +20,8 @@ enable_testing()
 
 add_executable(statemachine-test
   ../src/statemachine.c
-  test.cpp)
+  test.cpp
+  mocks.cpp)
 
 target_link_libraries(statemachine-test
   PRIVATE
