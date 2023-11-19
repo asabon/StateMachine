@@ -23,11 +23,19 @@ add_executable(statemachine-test
   test.cpp
   mocks.cpp)
 
+target_include_directories(statemachine-test
+  googletest/include
+  googlemock/include
+)
+
 target_link_libraries(statemachine-test
   PRIVATE
     gtest_main
 )
 
-include(GoogleTest GoogleMock)
+include(
+  GoogleTest
+  GoogleMock
+)
 
 gtest_discover_tests(statemachine-test)
