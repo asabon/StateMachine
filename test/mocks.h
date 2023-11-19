@@ -2,7 +2,7 @@
 #define MOCKS_H
 
 extern "C" {
-int state10_entry(void);
+extern int state10_entry(void);
 int state10_do(int * pNext);
 int state10_exit(void);
 int state11_entry(void);
