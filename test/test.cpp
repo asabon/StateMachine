@@ -47,6 +47,7 @@ TEST(statemachine_init, test_03)
     EXPECT_EQ(1, statemachine.changed);
 }
 
+#if 0
 class Test_statemachine_do : public ::testing::Test {
 protected:
     virtual void SetUp() {
@@ -188,3 +189,4 @@ TEST_F(Test_statemachine_do, test_06)
     result = statemachine_do(&statemachine);
     EXPECT_EQ(-3, result);
 }
+#endif

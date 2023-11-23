@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.14)
-
 project(statemachine-test)
 
 # GoogleTest requires at least C++14
@@ -18,10 +17,11 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(statemachine-test
+add_executable(
+  statemachine-test
   ../src/statemachine.c
   test.cpp
-  mocks.cpp)
+)
 
 #target_include_directories(statemachine-test
 #  PRIVATE
@@ -29,15 +29,14 @@ add_executable(statemachine-test
 #    googlemock/include
 #)
 
-target_link_libraries(statemachine-test
-  PRIVATE
-    GTest::gtest_main
-    pthreads 
+target_link_libraries(
+  statemachine-test
+  GTest::gtest_main
+  pthreads 
 )
 
 include(
   GoogleTest
-  GoogleMock
 )
 
 gtest_discover_tests(statemachine-test)
