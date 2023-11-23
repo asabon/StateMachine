@@ -31,8 +31,7 @@ add_executable(
 
 target_link_libraries(
   statemachine-test
-  GTest::gtest_main
-  pthreads 
+  GTest::gtest_main 
 )
 
 include(
