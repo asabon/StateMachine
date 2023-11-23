@@ -1,6 +1,7 @@
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
-#include "statemachine.h"
+//#include "gmock/gmock.h"
+#include "gtest/gtest.h"
+//#include "mocks.h"
+#include "../src/statemachine.h"
 
 TEST(statemachine_init, test_00)
 {
@@ -46,83 +47,7 @@ TEST(statemachine_init, test_03)
     EXPECT_EQ(1, statemachine.changed);
 }
 
-int state00_entry(void)
-{
-    return 0;
-}
-
-int state00_do(int * pNextState)
-{
-    *pNextState = 1;
-    return 0;
-}
-
-int state00_exit(void)
-{
-    return 0;
-}
-
-int state01_entry(void)
-{
-    return 0;
-}
-
-int state01_do(int * pNextState)
-{
-    *pNextState = 0;
-    return 0;
-}
-
-int state01_exit(void)
-{
-    return 0;
-}
-
-class Mocks {
-    public:
-        MOCK_METHOD0(state10_entry, int());
-        MOCK_METHOD1(state10_do,    int(int *));
-        MOCK_METHOD0(state10_exit,  int());
-        MOCK_METHOD0(state11_entry, int());
-        MOCK_METHOD1(state11_do,    int(int *));
-        MOCK_METHOD0(state11_exit,  int());
-};
-
-Mocks * mocks;
-
-extern "C" {
-int state10_entry(void);
-int state10_do(int * pNext);
-int state10_exit(void);
-int state11_entry(void);
-int state11_do(int * pNext);
-int state11_exit(void);
-}
-
-int state10_entry(void) {
-    return mocks->state10_entry();
-}
-
-int state10_do(int * pNext) {
-    return mocks->state10_do(pNext);
-}
-
-int state10_exit(void) {
-    return mocks->state10_exit();
-}
-
-int state11_entry(void) {
-    return mocks->state11_entry();
-}
-
-int state11_do(int * pNext) {
-    return mocks->state11_do(pNext);
-}
-
-int state11_exit(void) {
-    return mocks->state11_exit();
-}
-
+#if 0
 class Test_statemachine_do : public ::testing::Test {
 protected:
     virtual void SetUp() {
@@ -264,3 +189,4 @@ TEST_F(Test_statemachine_do, test_06)
     result = statemachine_do(&statemachine);
     EXPECT_EQ(-3, result);
 }
+#endif

@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install GoogleTest
+        run: |
+          sudo apt install libgtest-dev
+
+      - name: Build
+        run: |
+          mkdir -p test/build
+          cd test/build
+          cmake ..
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-package
+          path: test/build
+  
+      - name: Build-2
+        run: |
+          cd test/build
+          make
+
+      - run: ls
+      - run: ls test
+      - run: ls test/build
