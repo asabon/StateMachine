@@ -25,6 +25,11 @@ jobs:
           make
           ./statemachine-test
 
+      - name: View file lists
+        run: |
+          cd test/build
+          ls
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
