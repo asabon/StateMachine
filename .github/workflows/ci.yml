@@ -35,6 +35,16 @@ jobs:
           cd test/build
           ls
 
+      - name: View file lists (test/build/bin)
+        run: |
+          cd test/build/bin
+          ls
+  
+      - name: View file lists (test/build/lib)
+        run: |
+          cd test/build/lib
+          ls
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
