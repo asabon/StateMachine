@@ -18,7 +18,7 @@ jobs:
         run: |
           sudo apt install libgtest-dev
 
-      - name: Setup .NET Core
+      - name: Setup .NET Core # Required to execute ReportGenerator
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.x
