@@ -22,18 +22,11 @@ jobs:
           mkdir -p test/build
           cd test/build
           cmake ..
+          make
+          ./statemachine-test
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: test-package
           path: test/build
-  
-      - name: Build-2
-        run: |
-          cd test/build
-          make
-
-      - run: ls
-      - run: ls test
-      - run: ls test/build
