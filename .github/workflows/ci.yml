@@ -36,11 +36,24 @@ jobs:
         uses: danielpalme/ReportGenerator-GitHub-Action@5.2.0
         with:
           reports: test/build/CMakeFiles/statemachine-test.dir/test.cpp.gcda
-          targetdir: coveragereport
+          targetdir: CoverageReport
           reporttypes: Html;MarkdownSummaryGithub;Badges
+
+      - name: Upload CoverageReport
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: ./CoverageReport
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: test-package
           path: test/build
+
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: CoverageReport/SummaryGithub.md
