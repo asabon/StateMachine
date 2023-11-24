@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo apt install libgtest-dev
 
-      - name: Build
+      - name: Build and Run-Test
         run: |
           mkdir -p test/build
           cd test/build
@@ -27,6 +27,8 @@ jobs:
 
       - name: View file lists
         run: |
+          cd test
+          ls
           cd test/build
           ls
 
