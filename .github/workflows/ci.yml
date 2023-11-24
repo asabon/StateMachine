@@ -25,10 +25,13 @@ jobs:
           make
           ./statemachine-test
 
-      - name: View file lists
+      - name: View file lists (test)
         run: |
           cd test
           ls
+
+      - name: View file lists (test/build)
+        run: |
           cd test/build
           ls
 
