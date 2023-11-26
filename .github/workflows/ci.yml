@@ -34,7 +34,7 @@ jobs:
 
       - name: gcov
         run: |
-          cd build/CMakeFiles/statemachine-test.dir
+          cd build/CMakeFiles/statemachine-test.dir/src
           gcov *.gcda
 
       - run: ls build
