@@ -26,25 +26,25 @@ jobs:
 
       - name: Build and Run-Test
         run: |
-          mkdir -p test/build
-          cd test/build
+          mkdir -p build
+          cd build
           cmake ..
           make
           ./statemachine-test
 
       - name: gcov
         run: |
-          cd test/build/CMakeFiles/statemachine-test.dir
+          cd build/CMakeFiles/statemachine-test.dir
           gcov *.gcda
 
-      - run: ls test/build
-      - run: ls test/build/CMakeFiles
-      - run: ls test/build/CMakeFiles/statemachine-test.dir
+      - run: ls build
+      - run: ls build/CMakeFiles
+      - run: ls build/CMakeFiles/statemachine-test.dir
     
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.2.0
         with:
-          reports: test/build/CMakeFiles/statemachine-test.dir/*.gcov
+          reports: build/CMakeFiles/statemachine-test.dir/*.gcov
           targetdir: CoverageReport
           reporttypes: Html;MarkdownSummaryGithub;Badges
 
