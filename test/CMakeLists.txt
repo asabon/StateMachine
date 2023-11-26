@@ -20,13 +20,13 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
+add_subdirectory(../src)
+
 add_executable(
   statemachine-test
-  ../src/statemachine.c
+  statemachine
   test.cpp
 )
-
-add_subdirectory(../src)
 
 #target_include_directories(statemachine-test
 #  PRIVATE
