@@ -5,9 +5,9 @@ project(statemachine-test)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage")                   # add coverage option
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")               # add coverage option
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage") # add coverage option
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage")                   # add coverage option to C
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")               # add coverage option to C++
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage") # add coverage option to Linker
 
 # Use GoogleTest v1.14.0 (f8d7d77c06936315286eb55f8de22cd23c188571)
 include(FetchContent)
@@ -32,8 +32,6 @@ target_include_directories(
   PUBLIC
     src
     test
-    #googletest/include
-    #googlemock/include
 )
 
 target_link_libraries(
