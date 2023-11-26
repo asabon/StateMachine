@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(
   statemachine-test
-  src/statemachine
+  src/statemachine.c
   test/test.cpp
 )
 
