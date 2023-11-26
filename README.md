@@ -1,6 +1,7 @@
 [![CI](https://github.com/asabon/statemachine/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/asabon/statemachine/actions/workflows/ci.yml)
+![Coverage](https://github.com/asabon/PFD_Editor/blob/badges/badge_linecoverage.svg)
 
-# statemachine
+# StateMachine
 
 ## Outline
 

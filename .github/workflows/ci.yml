@@ -3,11 +3,12 @@ name: CI
 on:
   push:
     branches: [ "main" ]
+    paths-ignore: [ "badges" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  build:
+  unittest:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,11 +38,11 @@ jobs:
           cd build/CMakeFiles/statemachine-test.dir/src
           gcov *.gcda
 
-      - run: ls build
-      - run: ls build/CMakeFiles
-      - run: ls build/CMakeFiles/statemachine-test.dir
-      - run: ls build/CMakeFiles/statemachine-test.dir/src
-      - run: ls build/CMakeFiles/statemachine-test.dir/test
+#      - run: ls build
+#      - run: ls build/CMakeFiles
+#      - run: ls build/CMakeFiles/statemachine-test.dir
+#      - run: ls build/CMakeFiles/statemachine-test.dir/src
+#      - run: ls build/CMakeFiles/statemachine-test.dir/test
     
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.2.0
@@ -68,3 +69,30 @@ jobs:
         with:
           recreate: true
           path: CoverageReport/SummaryGithub.md
+
+  badges:
+    if: github.event_name == 'push'
+    needs: unittest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Download coverage report
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage-report
+          path: ./CoverageReport
+
+      - name: Copy badge
+        run: |
+          mkdir -p badges
+          cp CoverageReport/badge_linecoverage.svg badges/
+
+      - name: Push to badges branch
+        uses: s0/git-publish-subdir-action@master
+        env:
+          REPO: self
+          BRANCH: badges
+          FOLDER: badges
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
