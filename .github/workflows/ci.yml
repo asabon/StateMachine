@@ -44,7 +44,7 @@ jobs:
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.2.0
         with:
-          reports: test/build/CMakeFiles/statemachine-test.dir/*.gcda
+          reports: test/build/CMakeFiles/statemachine-test.dir/*.gcov
           targetdir: CoverageReport
           reporttypes: Html;MarkdownSummaryGithub;Badges
 
