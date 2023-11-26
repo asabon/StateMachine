@@ -26,6 +26,8 @@ add_executable(
   test.cpp
 )
 
+add_subdirectory(../src)
+
 #target_include_directories(statemachine-test
 #  PRIVATE
 #    googletest/include
