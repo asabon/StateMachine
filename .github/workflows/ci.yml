@@ -45,9 +45,9 @@ jobs:
           name: coverage-report
           path: ./CoverageReport
 
-      - run: |
-          ls test/build
-          ls test/build/CMakeFiles
+      - run: ls test/build
+      - run: ls test/build/CMakeFiles
+      - run: ls test/build/CMakeFiles/statemachine-test.dir
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
