@@ -26,11 +26,14 @@ add_executable(
   test/test.cpp
 )
 
-#target_include_directories(statemachine-test
-#  PRIVATE
-#    googletest/include
-#    googlemock/include
-#)
+target_include_directories(
+  statemachine-test
+  PUBLIC
+    src
+    test
+    #googletest/include
+    #googlemock/include
+)
 
 target_link_libraries(
   statemachine-test
