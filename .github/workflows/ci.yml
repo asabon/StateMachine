@@ -45,6 +45,9 @@ jobs:
           name: coverage-report
           path: ./CoverageReport
 
+      - run: |
+          ls test/build
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
