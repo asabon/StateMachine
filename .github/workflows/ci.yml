@@ -35,7 +35,7 @@ jobs:
       - name: gcov
         run: |
           cd test/build/CMakeFiles/statemachine-test.dir
-          lcov -d . -c -o coverage.info
+          gcov *.gcda
 
       - run: ls test/build
       - run: ls test/build/CMakeFiles
