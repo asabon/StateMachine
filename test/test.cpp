@@ -271,23 +271,3 @@ TEST_F(Test_statemachine_do, test_06)
     EXPECT_EQ(-3, result);
 }
 #endif
-
-static int state_00_entry_result = 0;
-int state_00_entry(void)
-{
-    return state_00_entry_result;
-}
-
-static int state_00_do_next = 0;
-static int state_00_do_result = 0;
-int state_00_do(int * pNextState)
-{
-    *pNextState = state_00_do_next;
-    return state_00_do_result;
-}
-
-static int state_00_exit_result = 0;
-int state_00_exit(void)
-{
-    return state_00_exit_result;
-}
