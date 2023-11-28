@@ -2,43 +2,58 @@
 #include "statemachine.h"
 
 /* ===== Mock codes ===== */
-static int state_00_entry_count = 0;
-static int state_00_entry_result = 0;
-static int state_00_do_count = 0;
-static int state_00_do_next = 0;
-static int state_00_do_result = 0;
-static int state_00_exit_count = 0;
-static int state_00_exit_result = 0;
+#define STATE_NUM 3
+static int state_entry_count[STATE_NUM] = {0};
+static int state_entry_result[STATE_NUM] = {0};
+static int state_do_count[STATE_NUM] = {0};
+static int state_do_next[STATE_NUM] = {0};
+static int state_do_result[STATE_NUM] = {0};
+static int state_exit_count[STATE_NUM] = {0};
+static int state_exit_result[STATE_NUM] = {0};
 
 void init_mock(void)
 {
-    state_00_entry_count = 0;
-    state_00_entry_result = 0;
-    state_00_do_count = 0;
-    state_00_do_next = 0;
-    state_00_do_result = 0;
-    state_00_exit_count = 0;
-    state_00_exit_result = 0;
+    for (int i = 0; i < STATE_NUM; i++) {
+        state_entry_count[i] = 0;
+        state_entry_result[i] = 0;
+        state_do_count[i] = 0;
+        state_do_next[i] = 0;
+        state_do_result[i] = 0;
+        state_exit_count[i] = 0;
+        state_exit_result[i] = 0;
+    }
 }
 
-int state_00_entry(void)
+int state_entry(int index)
 {
-    state_00_entry_count++;
-    return state_00_entry_result;
+    state_entry_count[index]++;
+    return state_entry_result[index];
 }
 
-int state_00_do(int * pNextState)
+int state_do(int index, int * pNextState)
 {
-    state_00_do_count++;
-    *pNextState = state_00_do_next;
-    return state_00_do_result;
+    state_do_count[index]++;
+    *pNextState = state_do_next[index];
+    return state_do_result[index];
 }
 
-int state_00_exit(void)
+int state_exit(int index)
 {
-    state_00_exit_count++;
-    return state_00_exit_result;
+    state_exit_count[index]++;
+    return state_exit_result[index];
 }
+
+int state_00_entry(void)             { return state_entry(0); }
+int state_00_do   (int * pNextState) { return state_do   (0, pNextState); }
+int state_00_exit (void)             { return state_exit (0); }
+
+int state_01_entry(void)             { return state_entry(1); }
+int state_01_do   (int * pNextState) { return state_do   (1, pNextState); }
+int state_01_exit (void)             { return state_exit (1); }
+
+int state_02_entry(void)             { return state_entry(2); }
+int state_02_do   (int * pNextState) { return state_do   (2, pNextState); }
+int state_02_exit (void)             { return state_exit (2); }
 
 /* ===== Test codes ===== */
 
@@ -108,24 +123,53 @@ TEST(statemachine_do, test_do_01)
     STATEMACHINE_T statemachine;
     STATE_T statelist[] = {
         {state_00_entry, state_00_do, state_00_exit},
+        {state_01_entry, state_01_do, state_01_exit},
+        {state_02_entry, state_02_do, state_02_exit},
     };
     /* Initialize mock */
     init_mock();
+    state_do_next[0] = 1;
+    state_do_next[1] = 2;
+    state_do_next[2] = 0;
+ 
     /* Initialize statemachine */
     result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
     EXPECT_EQ(0, result);
-    EXPECT_EQ(0, state_00_entry_count);
-    EXPECT_EQ(0, state_00_do_count);
-    EXPECT_EQ(0, state_00_exit_count);
+    EXPECT_EQ(0, state_entry_count[0]);
+    EXPECT_EQ(0, state_do_count[0]);
+    EXPECT_EQ(0, state_exit_count[0]);
+    EXPECT_EQ(0, state_entry_count[1]);
+    EXPECT_EQ(0, state_do_count[1]);
+    EXPECT_EQ(0, state_exit_count[1]);
+    EXPECT_EQ(0, state_entry_count[2]);
+    EXPECT_EQ(0, state_do_count[2]);
+    EXPECT_EQ(0, state_exit_count[2]);
     /* Do statemachine */
-    state_00_entry_result = 0;
-    state_00_do_result = 0;
-    state_00_exit_result = 0;
+    state_entry_result[0] = 0;
+    state_do_result[0] = 0;
+    state_exit_result[0] = 0;
     result = statemachine_do(&statemachine);
     EXPECT_EQ(0, result);
-    EXPECT_EQ(1, state_00_entry_count);
-    EXPECT_EQ(1, state_00_do_count);
-    EXPECT_EQ(1, state_00_exit_count);
+    EXPECT_EQ(1, state_entry_count[0]);
+    EXPECT_EQ(1, state_do_count[0]);
+    EXPECT_EQ(0, state_exit_count[0]);
+    EXPECT_EQ(0, state_entry_count[1]);
+    EXPECT_EQ(0, state_do_count[1]);
+    EXPECT_EQ(0, state_exit_count[1]);
+    EXPECT_EQ(0, state_entry_count[2]);
+    EXPECT_EQ(0, state_do_count[2]);
+    EXPECT_EQ(0, state_exit_count[2]);
+    result = statemachine_do(&statemachine);
+    EXPECT_EQ(0, result);
+    EXPECT_EQ(0, state_entry_count[0]);
+    EXPECT_EQ(0, state_do_count[0]);
+    EXPECT_EQ(1, state_exit_count[0]);
+    EXPECT_EQ(1, state_entry_count[1]);
+    EXPECT_EQ(1, state_do_count[1]);
+    EXPECT_EQ(0, state_exit_count[1]);
+    EXPECT_EQ(0, state_entry_count[2]);
+    EXPECT_EQ(0, state_do_count[2]);
+    EXPECT_EQ(0, state_exit_count[2]);
 }
 
 #if 0
