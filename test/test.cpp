@@ -152,7 +152,7 @@ TEST(statemachine_do, test_do_01)
     EXPECT_EQ(0, result);
     EXPECT_EQ(1, state_entry_count[0]);
     EXPECT_EQ(1, state_do_count[0]);
-    EXPECT_EQ(0, state_exit_count[0]);
+    EXPECT_EQ(1, state_exit_count[0]);
     EXPECT_EQ(0, state_entry_count[1]);
     EXPECT_EQ(0, state_do_count[1]);
     EXPECT_EQ(0, state_exit_count[1]);
@@ -163,13 +163,24 @@ TEST(statemachine_do, test_do_01)
     EXPECT_EQ(0, result);
     EXPECT_EQ(0, state_entry_count[0]);
     EXPECT_EQ(0, state_do_count[0]);
-    EXPECT_EQ(1, state_exit_count[0]);
+    EXPECT_EQ(0, state_exit_count[0]);
     EXPECT_EQ(1, state_entry_count[1]);
     EXPECT_EQ(1, state_do_count[1]);
-    EXPECT_EQ(0, state_exit_count[1]);
+    EXPECT_EQ(1, state_exit_count[1]);
     EXPECT_EQ(0, state_entry_count[2]);
     EXPECT_EQ(0, state_do_count[2]);
     EXPECT_EQ(0, state_exit_count[2]);
+    result = statemachine_do(&statemachine);
+    EXPECT_EQ(0, result);
+    EXPECT_EQ(0, state_entry_count[0]);
+    EXPECT_EQ(0, state_do_count[0]);
+    EXPECT_EQ(0, state_exit_count[0]);
+    EXPECT_EQ(0, state_entry_count[1]);
+    EXPECT_EQ(0, state_do_count[1]);
+    EXPECT_EQ(0, state_exit_count[1]);
+    EXPECT_EQ(1, state_entry_count[2]);
+    EXPECT_EQ(1, state_do_count[2]);
+    EXPECT_EQ(1, state_exit_count[2]);
 }
 
 #if 0
