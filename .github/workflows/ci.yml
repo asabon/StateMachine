@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-package
-          path: test/build
+          path: build
 
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
