@@ -11,6 +11,15 @@ static int state_do_result[STATE_NUM] = {0};
 static int state_exit_count[STATE_NUM] = {0};
 static int state_exit_result[STATE_NUM] = {0};
 
+void clear_counts(void)
+{
+    for (int i = 0; i < STATE_NUM; i++) {
+        state_entry_count[i] = 0;
+        state_do_count[i] = 0;
+        state_exit_count[i] = 0;
+    }
+}
+
 void init_mock(void)
 {
     for (int i = 0; i < STATE_NUM; i++) {
@@ -133,6 +142,7 @@ TEST(statemachine_do, test_do_01)
     state_do_next[2] = 0;
  
     /* Initialize statemachine */
+    clear_counts();
     result = statemachine_init(&statemachine, statelist, sizeof(statelist)/sizeof(statelist[0]), 0);
     EXPECT_EQ(0, result);
     EXPECT_EQ(0, state_entry_count[0]);
@@ -148,6 +158,8 @@ TEST(statemachine_do, test_do_01)
     state_entry_result[0] = 0;
     state_do_result[0] = 0;
     state_exit_result[0] = 0;
+
+    clear_counts();
     result = statemachine_do(&statemachine);
     EXPECT_EQ(0, result);
     EXPECT_EQ(1, state_entry_count[0]);
@@ -159,6 +171,8 @@ TEST(statemachine_do, test_do_01)
     EXPECT_EQ(0, state_entry_count[2]);
     EXPECT_EQ(0, state_do_count[2]);
     EXPECT_EQ(0, state_exit_count[2]);
+
+    clear_counts();
     result = statemachine_do(&statemachine);
     EXPECT_EQ(0, result);
     EXPECT_EQ(0, state_entry_count[0]);
@@ -170,6 +184,8 @@ TEST(statemachine_do, test_do_01)
     EXPECT_EQ(0, state_entry_count[2]);
     EXPECT_EQ(0, state_do_count[2]);
     EXPECT_EQ(0, state_exit_count[2]);
+
+    clear_counts();
     result = statemachine_do(&statemachine);
     EXPECT_EQ(0, result);
     EXPECT_EQ(0, state_entry_count[0]);
