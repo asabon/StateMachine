@@ -3,13 +3,19 @@
 
 # StateMachine
 
-## Outline
+## Overview
 
-This is a simple statemachine for C language.
+Simple statemachine written by C language.
 
-## Example
+## Requirement
+
+- C language
+
+## Usage
 
 ```
+# include "statemachine.h"
+
 int main(void)
 {
     STATEMACHINE_T statemachine;
@@ -32,6 +38,8 @@ int main(void)
     return 0;
 }
 ```
+
+StateMachine has following data structure.
 
 - STATEMACHINE_T
     - Statemachine data structure.
