@@ -2,6 +2,13 @@
 #include "statemachine.h"
 
 /* ===== Mock codes ===== */
+static int state_00_entry_count = 0;
+static int state_00_entry_result = 0;
+static int state_00_do_count = 0;
+static int state_00_do_next = 0;
+static int state_00_do_result = 0;
+static int state_00_exit_count = 0;
+static int state_00_exit_result = 0;
 
 void init_mock(void)
 {
@@ -14,17 +21,12 @@ void init_mock(void)
     state_00_exit_result = 0;
 }
 
-static int state_00_entry_count = 0;
-static int state_00_entry_result = 0;
 int state_00_entry(void)
 {
     state_00_entry_count++;
     return state_00_entry_result;
 }
 
-static int state_00_do_count = 0;
-static int state_00_do_next = 0;
-static int state_00_do_result = 0;
 int state_00_do(int * pNextState)
 {
     state_00_do_count++;
@@ -32,8 +34,6 @@ int state_00_do(int * pNextState)
     return state_00_do_result;
 }
 
-static int state_00_exit_count = 0;
-static int state_00_exit_result = 0;
 int state_00_exit(void)
 {
     state_00_exit_count++;
