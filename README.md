@@ -5,7 +5,7 @@
 
 ## Overview
 
-Simple statemachine written by C language.
+Simple statemachine for embedded system written in C language.
 
 ## Requirement
 
@@ -13,23 +13,55 @@ Simple statemachine written by C language.
 
 ## Usage
 
-```
+StateMachine has only 2 files.
+
+- statemachine.h
+- statemachine.c
+
+Sample code is below.
+
+```c
 # include "statemachine.h"
+
+int state00_entry(void)
+{
+    /* Do something when enter to this state. */
+    return 0; /* return 0 means success this function. */
+}
+
+int state00_do(int * pNextState)
+{
+    /* Do something in this state. */
+    *pNextState = 1; /* If next state is "1" */
+    return 0; /* return 0 means success this function. */
+}
+
+int state00_exit(void)
+{
+    /* Do something when exit to the other state. */
+    return 0; /* return 0 means success this function. */
+}
 
 int main(void)
 {
-    STATEMACHINE_T statemachine;
-    STATE_T statelist[] = {
-        {state00_entry, state00_do, state00_exit},
-        {state01_entry, state01_do, state01_exit},
-        {state02_entry, state02_do, state02_exit}
-    };
     int result;
+    STATEMACHINE_T statemachine;
+    /* State table */
+    /* This sample has 3 states. (state00, state01, state02) */
+    STATE_T statelist[] = {
+        /* Entry(),     Do(),       Exit() */
+        {state00_entry, state00_do, state00_exit}, /* state00 (state id = 0) */
+        {state01_entry, state01_do, state01_exit}, /* state01 (state id = 1) */
+        {state02_entry, state02_do, state02_exit}  /* state02 (state id = 2) */
+    };
+
+    /* Initialize statemachine. */
     result = statemachine_init(&statemachine, statelist, 3, 0);
     if (result != 0) {
         return result;
     }
     while(1) {
+        /* Do statemachine */
         result = statemachine_do(&statemachine);
         if (result != 0) {
             return result;
@@ -39,23 +71,11 @@ int main(void)
 }
 ```
 
-StateMachine has following data structure.
+## Features
 
-- STATEMACHINE_T
-    - Statemachine data structure.
-    - statemachine_init() initialize this instance.
+## Reference
 
-- STATE_T
-    - State data structure.
-    - This structure has 3 function pointers.
-        - Entry()
-            - This function is called at entry this state.
-            - int entry (void);
-                - return value is error code (0 is successful)
-        - Do()
-            - int do (int * pNextstate);
-                - return value is error code (0 is successful)
-                - This function set next state id to pNextstate.
-        - Exit()
-            - int exit (void);
-                - return value is error code (0 is successful)
+## Author
+
+## License
+
