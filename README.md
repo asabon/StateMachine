@@ -71,6 +71,15 @@ int main(void)
 }
 ```
 
+stateDiagram-v2
+    [*] --> State00 : State00_Entry()
+    State00 --> State00 : State00_Do()
+    State00 --> State01 : State00_Exit()\nState01_Entry()
+    State01 --> State01 : State01_Do()
+    State01 --> State02 : State01_Exit()\nState02_Entry()
+    State02 --> State02 : State02_Do()
+    State02 --> State00 : State02_Exit()\nState00_Entry()
+
 ## Features
 
 ## Reference
