@@ -18,7 +18,31 @@ StateMachine has only 2 files.
 - statemachine.h
 - statemachine.c
 
-Sample code is below.
+### Sample state transition
+
+StateMachine can achieve the following state transitions. 
+
+```mermaid
+stateDiagram-v2
+    [*] --> State00 : State00_Entry()
+    State00 --> State00 : State00_Do()
+    State00 --> State01 : State00_Exit()\nState01_Entry()
+    State01 --> State01 : State01_Do()
+    State01 --> State02 : State01_Exit()\nState02_Entry()
+    State02 --> State02 : State02_Do()
+    State02 --> State00 : State02_Exit()\nState00_Entry()
+```
+
+- This sample has 3 states.
+  - state00
+  - state01
+  - state02
+- Each state has 3 functions.
+  - entry()
+  - do()
+  - exit()
+
+In this case, sample code is below.
 
 ```c
 # include "statemachine.h"
@@ -41,6 +65,8 @@ int state00_exit(void)
     /* Do something when exit to the other state. */
     return 0; /* return 0 means success this function. */
 }
+
+/* state01, state02 should be implement here. */
 
 int main(void)
 {
