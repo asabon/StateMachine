@@ -1,0 +1,25 @@
+name: Work
+
+on: [ workflow_dispatch ]
+
+jobs:
+  gen-doxyfile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Doxygen
+        run: |
+          sudo apt-get install doxygen
+
+      - name: Generate Doxyfile
+        run: |
+          doxygen -g
+
+      - run: |
+          ls
+
+      - name: Upload Doxyfile
+        uses: actions/upload-artifact@v3
+        with:
+          name: Doxyfile
+          path: ./Doxyfile
