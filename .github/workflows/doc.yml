@@ -1,0 +1,27 @@
+name: Doxygen
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  doxygen:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Doxygen Action
+        uses: mattnotmitt/doxygen-action@1.9.5
+    
+      - name: Check result
+        run: |
+          ls
+
+#      - name: Upload Document
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: Doxyfile
+#          path: ./Doxyfile
+  
