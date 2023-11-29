@@ -33,17 +33,11 @@ jobs:
           make
           ./statemachine-test
 
-      - name: gcov
+      - name: Execute gcov
         run: |
           cd build/CMakeFiles/statemachine-test.dir/src
           gcov *.gcda
 
-#      - run: ls build
-#      - run: ls build/CMakeFiles
-#      - run: ls build/CMakeFiles/statemachine-test.dir
-#      - run: ls build/CMakeFiles/statemachine-test.dir/src
-#      - run: ls build/CMakeFiles/statemachine-test.dir/test
-    
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.2.0
         with:
