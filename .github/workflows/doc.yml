@@ -19,9 +19,8 @@ jobs:
         run: |
           ls
 
-#      - name: Upload Document
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: Doxyfile
-#          path: ./Doxyfile
-  
+      - name: Upload Document
+        uses: actions/upload-artifact@v3
+        with:
+          name: Document
+          path: ./html
