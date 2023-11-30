@@ -1,5 +1,5 @@
 /**
- * @file
+ * @file statemachine.h
  */
 #ifndef STATEMACHINE_H
 #define STATEMACHINE_H
