@@ -15,10 +15,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Generate doxygen document
+      - name: Generate document
         uses: mattnotmitt/doxygen-action@1.9.5
     
-      - name: Upload Document
+      - name: Upload document
         uses: actions/upload-artifact@v3
         with:
           name: Document
@@ -29,11 +29,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/deploy_key.pem
           chmod 600 ~/deploy_key.pem
 
-      - name: Check generated key
-        run: |
-          ls ~/
-
-      - name: Clone repository in temp
+      - name: Deploy document
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -45,4 +41,9 @@ jobs:
           cd StateMachine
           rm -rf *
           cp -r ../../../html/* ./
-          ls
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Deploy $GITHUB_SHA by GitHub Actions"
+            git pull origin master
+            git push origin master
+          fi
