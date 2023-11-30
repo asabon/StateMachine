@@ -3,6 +3,9 @@ name: Doxygen
 on:
   push:
     branches: [ "main" ]
+    paths-ignore: [ "badges" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   doxygen:
