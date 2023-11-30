@@ -40,6 +40,16 @@ jobs:
           mkdir -p tmp
           cd tmp
           gh repo clone https://github.com/asabon/Documents
+          
+      - run: |
+          pwd
           ls
-          cd Documents
+
+      - run: |
+          cd tmp
           ls
+
+      - run: |
+          cd tmp/Documents
+          ls
+  
