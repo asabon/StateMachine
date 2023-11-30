@@ -45,7 +45,10 @@ jobs:
           cp -r ../../../html/* ./
           git add -A
           if ! git diff --cached --quiet; then
+            echo "commit"
             git commit -m "Deploy $GITHUB_SHA by GitHub Actions"
+            echo "pull"
             git pull origin main
+            echo "push"
             git push origin main
           fi
