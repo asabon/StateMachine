@@ -28,8 +28,6 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/deploy_key.pem
           chmod 600 ~/deploy_key.pem
-          git config --global user.email "asabon.t@gmail.com"
-          git config --global user.name "asabon"
 
       - name: Deploy document
         env:
@@ -46,6 +44,8 @@ jobs:
           cp -r ../../../html/* ./
           git add -A
           if ! git diff --cached --quiet; then
+            git config --global user.email "github-actions@github.com"
+            git config --global user.name "github-actions"
             echo "commit"
             git commit -m "Deploy $GITHUB_SHA by GitHub Actions"
             echo "pull"
