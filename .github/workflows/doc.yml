@@ -24,10 +24,12 @@ jobs:
           name: Document
           path: ./html
 
-      - name: Setup ssh-key
+      - name: Setup repository
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/deploy_key.pem
           chmod 600 ~/deploy_key.pem
+          git config --global user.email "asabon.t@gmail.com"
+          git config --global user.name "asabon"
 
       - name: Deploy document
         env:
