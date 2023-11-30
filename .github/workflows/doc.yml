@@ -12,15 +12,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Doxygen Action
+      - name: Generate doxygen document
         uses: mattnotmitt/doxygen-action@1.9.5
     
-      - name: Check result
-        run: |
-          ls
-
       - name: Upload Document
         uses: actions/upload-artifact@v3
         with:
           name: Document
           path: ./html
+
+      - name: Setup ssh-key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/deploy_key.pem
+          chmod 600 ~/deploy_key.pem
+
+      - name: Check generated key
+        run: |
+          ls ~/
+
+      - name: Clone repository in temp
+        run: |
+          mkdir -p tmp
+          cd tmp
+          gh repo clone https://github.com/asabon/Documents
+          ls
+          cd Documents
+          ls
