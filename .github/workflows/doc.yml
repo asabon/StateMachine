@@ -34,7 +34,7 @@ jobs:
       - name: Deploy document
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_SSH_COMMAND: ssh -i ~/deploy_key.pem -o StrictHostKeyChecked=no -F /dev/null
+          GIT_SSH_COMMAND: ssh -i ~/deploy_key.pem -o StrictHostKeyChecking=no -F /dev/null
         run: |
           mkdir -p tmp
           cd tmp
