@@ -37,6 +37,7 @@ jobs:
 
       - name: Copy document to destination
         run: |
+          rm -r doc/StateMachine/*
           cp -r ./html/* doc/StateMachine/
           echo "--- check result ---"
           cd doc/StateMachine
@@ -47,7 +48,10 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
           cd doc/StateMachine
-          git commit -a -m "Add changes"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -a -m "Add changes"
+          fi
 
       - name: GitHub Push
         uses: ad-m/github-push-action@v0.8.0
