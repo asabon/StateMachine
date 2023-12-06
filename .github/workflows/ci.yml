@@ -62,35 +62,9 @@ jobs:
           recreate: true
           path: CoverageReport/SummaryGithub.md
 
-#  badges:
-#    if: github.event_name == 'push'
-#    needs: unittest
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#      
-#      - name: Download coverage report
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: coverage-report
-#          path: ./CoverageReport
-#
-#      - name: Copy badge
-#        run: |
-#          mkdir -p badges
-#          cp CoverageReport/badge_linecoverage.svg badges/
-#
-#      - name: Push to badges branch
-#        uses: s0/git-publish-subdir-action@master
-#        env:
-#          REPO: self
-#          BRANCH: badges
-#          FOLDER: badges
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   doxygen:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -106,6 +80,7 @@ jobs:
 
   deploy-doc:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     needs: [ "unittest", "doxygen" ]
     steps:
       - name: Checkout document repository
@@ -167,4 +142,3 @@ jobs:
           directory: doc/StateMachine
           repository: asabon/Documents
           ssh: true
-
