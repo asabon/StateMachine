@@ -35,17 +35,17 @@ jobs:
           repository: asabon/Documents
           path: doc
 
-      - name: Copy document
+      - name: Copy document to destination
         run: |
           cp -r ./html/* doc/StateMachine/
           echo "--- check result ---"
           cd doc/StateMachine
           ls -al
 
-      - name: Commit files
+      - name: Commit files to git repository
         run: |
-          git config --local user.email "github-actions@github.com"
-          git config --local user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
           cd doc/StateMachine
           git commit -a -m "Add changes"
 
