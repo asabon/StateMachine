@@ -57,6 +57,7 @@ jobs:
         uses: ad-m/github-push-action@v0.8.0
         with:
           directory: doc/StateMachine
+          repository: asabon/Documents
 
 #      - name: Deploy document
 #        env:
