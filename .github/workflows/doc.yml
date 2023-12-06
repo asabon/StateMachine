@@ -34,6 +34,8 @@ jobs:
         with:
           repository: asabon/Documents
           path: doc
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          persist-credentials: true
 
       - name: Copy document to destination
         run: |
@@ -58,6 +60,7 @@ jobs:
         with:
           directory: doc/StateMachine
           repository: asabon/Documents
+          ssh: true
 
 #      - name: Deploy document
 #        env:
