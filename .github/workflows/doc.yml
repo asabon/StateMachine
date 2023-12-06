@@ -1,4 +1,4 @@
-name: Doxygen
+name: Generate document
 
 on:
   push:
@@ -24,32 +24,57 @@ jobs:
           name: Document
           path: ./html
 
-      - name: Setup repository
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/deploy_key.pem
-          chmod 600 ~/deploy_key.pem
+#      - name: Setup repository
+#        run: |
+#          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/deploy_key.pem
+#          chmod 600 ~/deploy_key.pem
 
-      - name: Deploy document
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_SSH_COMMAND: ssh -i ~/deploy_key.pem -o StrictHostKeyChecking=no -F /dev/null
+      - name: Checkout document repository
+        uses: actions/checkout@v3
+        with:
+          repository: asabon/Documents
+          path: doc
+
+      - name: Copy document
         run: |
-          mkdir -p tmp
-          cd tmp
-          gh repo clone https://github.com/asabon/Documents
-          cd Documents
-          mkdir -p StateMachine
-          cd StateMachine
-          rm -rf *
-          cp -r ../../../html/* ./
-          git add -A
-          if ! git diff --cached --quiet; then
-            git config --global user.email "github-actions@github.com"
-            git config --global user.name "github-actions"
-            echo "commit"
-            git commit -m "Deploy $GITHUB_SHA by GitHub Actions"
-            echo "pull"
-            git pull origin main
-            echo "push"
-            git push origin main
-          fi
+          cp -r ./html/* doc/StateMachine/
+          echo "--- check result ---"
+          cd doc/StateMachine
+          ls -al
+
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name "github-actions"
+          cd doc/StateMachine
+          git commit -a -m "Add changes"
+
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          directory: doc/StateMachine
+
+#      - name: Deploy document
+#        env:
+#          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          GIT_SSH_COMMAND: ssh -i ~/deploy_key.pem -o StrictHostKeyChecking=no -F /dev/null
+#        run: |
+#          mkdir -p tmp
+#          cd tmp
+#          gh repo clone https://github.com/asabon/Documents
+#          cd Documents
+#          mkdir -p StateMachine
+#          cd StateMachine
+#          rm -rf *
+#          cp -r ../../../html/* ./
+#          git add -A
+#          if ! git diff --cached --quiet; then
+#            git config --global user.email "github-actions@github.com"
+#            git config --global user.name "github-actions"
+#            echo "commit"
+#            git commit -m "Deploy $GITHUB_SHA by GitHub Actions"
+#            echo "pull"
+#            git pull origin main
+#            echo "push"
+#            git push origin main
+#          fi
