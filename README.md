@@ -1,5 +1,5 @@
 [![CI](https://github.com/asabon/statemachine/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/asabon/statemachine/actions/workflows/ci.yml)
-![Coverage](https://github.com/asabon/StateMachine/blob/badges/badge_linecoverage.svg)
+![Coverage](https://asabon.github.io/Documents/StateMachine/badges/badge_linecoverage.svg)
 
 # StateMachine
 
@@ -101,7 +101,7 @@ int main(void)
 
 ## Reference
 
-- [Document](https://asabon.github.io/Documents/StateMachine/)
+- [Document](https://asabon.github.io/Documents/StateMachine/document/index.html)
 
 ## Author
 

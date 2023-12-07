@@ -62,7 +62,7 @@ jobs:
           recreate: true
           path: CoverageReport/SummaryGithub.md
 
-  doxygen:
+  generate-doc:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
@@ -81,7 +81,7 @@ jobs:
   deploy-doc:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
-    needs: [ "unittest", "doxygen" ]
+    needs: [ "unittest", "generate-doc" ]
     steps:
       - name: Checkout document repository
         uses: actions/checkout@v3
