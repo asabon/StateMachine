@@ -3,14 +3,12 @@ name: CI
 on:
   push:
     branches: [ "main" ]
-    paths-ignore: [ "badges" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
   unittest:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -64,29 +62,83 @@ jobs:
           recreate: true
           path: CoverageReport/SummaryGithub.md
 
-  badges:
-    if: github.event_name == 'push'
-    needs: unittest
+  generate-doc:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@v3
+
+      - name: Generate document
+        uses: mattnotmitt/doxygen-action@1.9.5
+    
+      - name: Upload document
+        uses: actions/upload-artifact@v3
+        with:
+          name: document
+          path: ./html
+
+  deploy-doc:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    needs: [ "unittest", "generate-doc" ]
+    steps:
+      - name: Checkout document repository
+        uses: actions/checkout@v3
+        with:
+          repository: asabon/Documents
+          path: doc
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          persist-credentials: true
+
       - name: Download coverage report
         uses: actions/download-artifact@v3
         with:
           name: coverage-report
-          path: ./CoverageReport
+          path: ./temp/coverage-report
 
-      - name: Copy badge
+      - name: Download document
+        uses: actions/download-artifact@v3
+        with:
+          name: document
+          path: ./temp/document
+
+      - name: Check result
         run: |
-          mkdir -p badges
-          cp CoverageReport/badge_linecoverage.svg badges/
+          echo "=== ls temp ==="
+          ls temp
+          echo "=== ls temp/coverage-report ==="
+          ls temp/coverage-report
+          echo "=== ls temp/document ==="
+          ls temp/document
+      
+      - name: Delete items
+        run: |
+          rm -rf doc/StateMachine/*
+      
+      - name: Copy coverage-report to destination
+        run: |
+          mkdir -p doc/StateMachine/coverage-report
+          cp -r ./temp/coverage-report/* doc/StateMachine/coverage-report/
+  
+      - name: Copy document to destination
+        run: |
+          mkdir -p doc/StateMachine/document
+          cp -r ./temp/document/* doc/StateMachine/document/
 
-      - name: Push to badges branch
-        uses: s0/git-publish-subdir-action@master
-        env:
-          REPO: self
-          BRANCH: badges
-          FOLDER: badges
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit files to git repository
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          cd doc/StateMachine
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -a -m "Add changes"
+          fi
+
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          directory: doc/StateMachine
+          repository: asabon/Documents
+          ssh: true
