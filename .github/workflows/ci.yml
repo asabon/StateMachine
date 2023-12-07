@@ -118,9 +118,9 @@ jobs:
       
       - name: Copy coverage-report to destination
         run: |
-          mkdir -p doc/StateMachine/badges
-          cp -r ./temp/coverage-report/badge_linecoverage.svg doc/StateMachine/badges/
-
+          mkdir -p doc/StateMachine/coverage-report
+          cp -r ./temp/coverage-report/* doc/StateMachine/coverage-report/
+  
       - name: Copy document to destination
         run: |
           mkdir -p doc/StateMachine/document
